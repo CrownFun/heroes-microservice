@@ -3,6 +3,7 @@ package pl.filewicz.heroes.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.filewicz.heroes.controller.client.HeroesRestClient;
+import pl.filewicz.heroes.exceptions.DuplicateHeroesException;
 import pl.filewicz.heroes.model.Army;
 import pl.filewicz.heroes.model.Castle;
 import pl.filewicz.heroes.model.Creatures;
@@ -20,6 +21,7 @@ public class HeroesService {
     private final HeroesRepository heroesRepository;
 
     public Heroes createHeroes(String heroesName, String castleName, String weaponName, String creature1, String creature2, String creature3) {
+        verifyHeroesDuplicateExistance(heroesName);
         Castle castle = heroesRestClient.getCastle(castleName);
         Weapon weapon = heroesRestClient.getWeapon(weaponName);
         Heroes heroes = new Heroes(heroesName, weapon, createArmy(creature1, creature2, creature3), castle);
@@ -37,15 +39,23 @@ public class HeroesService {
         return new Army(creatures);
     }
 
-    public Heroes getHeroesByName(String heroesName){
+    public Heroes getHeroesByName(String heroesName) {
         Heroes heroesFromList = heroesRepository.getHeroesFromList(heroesName);
         System.out.println("pobrano herosa z listy " + heroesFromList.getName());
         return heroesFromList;
     }
 
-    public List<Heroes> getAllHeroesFromList(){
+    public List<Heroes> getAllHeroesFromList() {
         return heroesRepository.getHeroesList();
     }
 
-
+    private void verifyHeroesDuplicateExistance(String name) {
+        if (!heroesRepository.getHeroesList().isEmpty()) {
+            for (Heroes heroes : heroesRepository.getHeroesList()) {
+                if (heroes.getName().equals(name)) {
+                    throw new DuplicateHeroesException(name);
+                }
+            }
+        }
+    }
 }
