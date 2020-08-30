@@ -5,11 +5,14 @@ import com.filewicz.combat.model.Heroes;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CombatService {
 
     private AttackFactor calculateHeroesFactor(Heroes heroes) {
+
+
         int totalAttack = 0;
         int totalDefense = 0;
         int damage = 0;
@@ -21,11 +24,12 @@ public class CombatService {
 
         List<Creatures> creaturesList = heroes.getArmy().getCreaturesList();
 
+        Random random = new Random();
         for (Creatures creatures : creaturesList) {
             totalAttack = totalDefense + creatures.getAttack();
             quantity = quantity + creatures.getQuantity();
             totalDefense = totalDefense + creatures.getDefense();
-            damage = damage + creatures.getMaxDamage();
+            damage = damage + (random.nextInt(creatures.getMaxDamage()-creatures.getMinDamage()) + (creatures.getMinDamage()+1));  // random between max-min
         }
         System.out.println("staty dla heroes " + heroes.getName());
         System.out.println("total atak " + totalAttack);
