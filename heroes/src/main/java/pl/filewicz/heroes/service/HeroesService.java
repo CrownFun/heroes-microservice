@@ -2,7 +2,7 @@ package pl.filewicz.heroes.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.filewicz.heroes.controller.HeroesRestClient;
+import pl.filewicz.heroes.controller.client.HeroesRestClient;
 import pl.filewicz.heroes.model.Army;
 import pl.filewicz.heroes.model.Castle;
 import pl.filewicz.heroes.model.Creatures;

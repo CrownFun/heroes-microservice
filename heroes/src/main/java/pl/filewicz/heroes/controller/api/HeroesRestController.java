@@ -1,4 +1,4 @@
-package pl.filewicz.heroes.controller;
+package pl.filewicz.heroes.controller.api;
 
 import org.springframework.http.ResponseEntity;
 import pl.filewicz.heroes.model.Heroes;

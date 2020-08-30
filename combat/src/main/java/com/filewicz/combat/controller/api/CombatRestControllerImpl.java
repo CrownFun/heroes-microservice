@@ -1,4 +1,4 @@
-package com.filewicz.combat.controller;
+package com.filewicz.combat.controller.api;
 
 import com.filewicz.combat.model.Heroes;
 import com.filewicz.combat.service.CombatService;

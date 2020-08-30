@@ -1,16 +1,17 @@
-package pl.filewicz.heroes.exceptions;
+package pl.filewicz.heroes.exceptions.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pl.filewicz.heroes.exceptions.CreatureNotFoundException;
 
 @RestControllerAdvice
-public class CastleNotFoundAdvice {
+public class CreatureNotFoundAdvice {
 
-    @ExceptionHandler(CastleNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public String castleNotFoundHandler(CastleNotFoundException e) {
+    @ExceptionHandler
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public String creatureNotFoundHandler(CreatureNotFoundException e) {
         return e.getMessage();
     }
 }

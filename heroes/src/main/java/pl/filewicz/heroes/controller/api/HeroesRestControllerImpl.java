@@ -1,4 +1,4 @@
-package pl.filewicz.heroes.controller;
+package pl.filewicz.heroes.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package pl.filewicz.heroes.controller;
+package pl.filewicz.heroes.controller.client;
 
 
 import lombok.RequiredArgsConstructor;
