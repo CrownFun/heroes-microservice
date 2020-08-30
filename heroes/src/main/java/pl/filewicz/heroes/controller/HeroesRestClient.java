@@ -3,7 +3,12 @@ package pl.filewicz.heroes.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import pl.filewicz.heroes.exceptions.CastleNotFoundException;
+import pl.filewicz.heroes.exceptions.CreatureNotFoundException;
+import pl.filewicz.heroes.exceptions.WeaponNotFoundException;
 import pl.filewicz.heroes.model.Castle;
 import pl.filewicz.heroes.model.Creatures;
 import pl.filewicz.heroes.model.Weapon;
@@ -19,15 +24,27 @@ public class HeroesRestClient {
     private final RestTemplate restTemplate;
 
     public Castle getCastle(String name) {
-        return restTemplate.getForObject(CASTLE_URL + name, Castle.class);
+        try {
+            return restTemplate.getForObject(CASTLE_URL + name, Castle.class);
+        } catch (RestClientException e) {
+            throw new CastleNotFoundException(name);
+        }
     }
 
     public Weapon getWeapon(String name) {
-        return restTemplate.getForObject(WEAPON_URL + name, Weapon.class);
+        try {
+            return restTemplate.getForObject(WEAPON_URL + name, Weapon.class);
+        } catch (RestClientException e) {
+            throw new WeaponNotFoundException(name);
+        }
     }
 
     public Creatures getCreature(String name) {
-        return restTemplate.getForObject(CREATURE_URL + name, Creatures.class);
+        try {
+            return restTemplate.getForObject(CREATURE_URL + name, Creatures.class);
+        } catch (RestClientException e) {
+            throw new CreatureNotFoundException(name);
+        }
     }
 
 }
