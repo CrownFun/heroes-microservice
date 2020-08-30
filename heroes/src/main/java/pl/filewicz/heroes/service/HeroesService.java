@@ -2,7 +2,7 @@ package pl.filewicz.heroes.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.filewicz.heroes.controller.client.HeroesRestClient;
+import pl.filewicz.heroes.controller.client.HeroesRestClientImpl;
 import pl.filewicz.heroes.exceptions.DuplicateHeroesException;
 import pl.filewicz.heroes.model.Army;
 import pl.filewicz.heroes.model.Castle;
@@ -17,13 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HeroesService {
 
-    private final HeroesRestClient heroesRestClient;
+    private final HeroesRestClientImpl heroesRestClientImpl;
     private final HeroesRepository heroesRepository;
 
     public Heroes createHeroes(String heroesName, String castleName, String weaponName, String creature1, String creature2, String creature3) {
         verifyHeroesDuplicateExistance(heroesName);
-        Castle castle = heroesRestClient.getCastle(castleName);
-        Weapon weapon = heroesRestClient.getWeapon(weaponName);
+        Castle castle = heroesRestClientImpl.getCastle(castleName);
+        Weapon weapon = heroesRestClientImpl.getWeapon(weaponName);
         Heroes heroes = new Heroes(heroesName, weapon, createArmy(creature1, creature2, creature3), castle);
         heroesRepository.getHeroesList().add(heroes);
         System.out.println("zapisano herosa do listy " + heroesRepository.getHeroesList());
@@ -32,9 +32,9 @@ public class HeroesService {
 
     private Army createArmy(String name1, String name2, String name3) {
         List<Creatures> creatures = List.of(
-                heroesRestClient.getCreature(name1),
-                heroesRestClient.getCreature(name2),
-                heroesRestClient.getCreature(name3)
+                heroesRestClientImpl.getCreature(name1),
+                heroesRestClientImpl.getCreature(name2),
+                heroesRestClientImpl.getCreature(name3)
         );
         return new Army(creatures);
     }
