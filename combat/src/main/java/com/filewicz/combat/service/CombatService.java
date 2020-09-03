@@ -12,7 +12,6 @@ public class CombatService {
 
     private AttackFactor calculateHeroesFactor(Heroes heroes) {
 
-
         int totalAttack = 0;
         int totalDefense = 0;
         int damage = 0;
@@ -64,5 +63,4 @@ public class CombatService {
         }
         return text + " Wygrał heroes " + heroes2.getName();
     }
-
 }

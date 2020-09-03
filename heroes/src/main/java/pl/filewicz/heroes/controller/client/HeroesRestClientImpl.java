@@ -32,6 +32,7 @@ public class HeroesRestClientImpl implements HeroesRestClient {
         try {
             return restTemplate.getForObject(CASTLE_URL + name, Castle.class);
         } catch (HttpStatusCodeException e) {
+            System.out.println("Przechwytuje błąd castle not found ");
             if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
                 throw new CastleNotFoundException(name);
             else
@@ -43,7 +44,7 @@ public class HeroesRestClientImpl implements HeroesRestClient {
         try {
             return restTemplate.getForObject(WEAPON_URL + name, Weapon.class);
         } catch (HttpClientErrorException e) {
-            System.out.println("Przechwytuje błąd");
+            System.out.println("Przechwytuje błąd weapon not found ");
             if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
                 throw new WeaponNotFoundException(name);
             else
@@ -54,7 +55,8 @@ public class HeroesRestClientImpl implements HeroesRestClient {
     public Creatures getCreature(String name) {
         try {
             return restTemplate.getForObject(CREATURE_URL + name, Creatures.class);
-        } catch (HttpStatusCodeException e) {
+        } catch (HttpClientErrorException e) {
+            System.out.println("Przechwytuje błąd creature not found");
             if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
                 throw new CreatureNotFoundException(name);
             else

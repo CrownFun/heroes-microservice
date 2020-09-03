@@ -5,14 +5,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.filewicz.heroes.exceptions.CreatureNotFoundException;
-import pl.filewicz.heroes.exceptions.CreatureServiceException;
 
 @RestControllerAdvice
 public class CreatureNotFoundAdvice {
 
-    @ExceptionHandler
+    @ExceptionHandler(CreatureNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public String creatureNotFoundHandler(CreatureServiceException e) {
+    public String creatureNotFoundHandler(CreatureNotFoundException e) {
         return e.getMessage();
     }
 }
