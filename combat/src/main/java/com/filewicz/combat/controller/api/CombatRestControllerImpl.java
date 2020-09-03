@@ -12,6 +12,8 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Random;
+
 @RestController
 @RequestMapping("/api/combat")
 @RequiredArgsConstructor
