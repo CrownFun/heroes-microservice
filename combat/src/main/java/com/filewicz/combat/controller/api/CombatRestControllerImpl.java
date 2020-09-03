@@ -19,7 +19,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class CombatRestControllerImpl {
 
-    private final static String HEROES_URL = "http://localhost:8087/api/heroes/";
+    private final static String HEROES_URL = "http://heroes-service/api/heroes/";
 
     private final CombatService combatService;
     private final RestTemplate restTemplate;

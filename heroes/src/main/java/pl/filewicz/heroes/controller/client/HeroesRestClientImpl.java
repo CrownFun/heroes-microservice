@@ -2,6 +2,7 @@ package pl.filewicz.heroes.controller.client;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -22,9 +23,9 @@ import pl.filewicz.heroes.model.Weapon;
 //należy obslużyć sytuację w której serwis nie odpowiada, można się bawić w status code ale prawdopodbnie problem rozwiąze Hystrix
 public class HeroesRestClientImpl implements HeroesRestClient {
 
-    private final static String CASTLE_URL = "http://localhost:8084/api/castle/";
-    private final static String WEAPON_URL = "http://localhost:8085/api/weapon/";
-    private final static String CREATURE_URL = "http://localhost:8086/api/creature/";
+    private final static String CASTLE_URL = "http://castle-service/api/castle/";
+    private final static String WEAPON_URL = "http://weapon-service/api/weapon/";
+    private final static String CREATURE_URL = "http://creatures-service/api/creature/";
 
     private final RestTemplate restTemplate;
 
