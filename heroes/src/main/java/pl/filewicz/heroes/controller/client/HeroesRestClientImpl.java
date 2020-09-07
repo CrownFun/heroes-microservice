@@ -1,19 +1,7 @@
 package pl.filewicz.heroes.controller.client;
 
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
-import pl.filewicz.heroes.exceptions.CastleNotFoundException;
-import pl.filewicz.heroes.exceptions.CastleServiceException;
-import pl.filewicz.heroes.exceptions.CreatureNotFoundException;
-import pl.filewicz.heroes.exceptions.CreatureServiceException;
-import pl.filewicz.heroes.exceptions.WeaponNotFoundException;
-import pl.filewicz.heroes.exceptions.WeaponServiceException;
 import pl.filewicz.heroes.model.Castle;
 import pl.filewicz.heroes.model.Creatures;
 import pl.filewicz.heroes.model.Weapon;
@@ -23,45 +11,19 @@ import pl.filewicz.heroes.model.Weapon;
 //należy obslużyć sytuację w której serwis nie odpowiada, można się bawić w status code ale prawdopodbnie problem rozwiąze Hystrix
 public class HeroesRestClientImpl implements HeroesRestClient {
 
-    private final static String CASTLE_URL = "http://castle-service/api/castle/";
-    private final static String WEAPON_URL = "http://weapon-service/api/weapon/";
-    private final static String CREATURE_URL = "http://creatures-service/api/creature/";
-
-    private final RestTemplate restTemplate;
+    private final CastleInfo castleInfo;
+    private final WeaponInfo weaponInfo;
+    private final CreatureInfo creatureInfo;
 
     public Castle getCastle(String name) {
-        try {
-            return restTemplate.getForObject(CASTLE_URL + name, Castle.class);
-        } catch (HttpStatusCodeException e) {
-            System.out.println("Przechwytuje błąd castle not found ");
-            if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
-                throw new CastleNotFoundException(name);
-            else
-                throw new CastleServiceException(e.getStatusCode().value());
-        }
+        return castleInfo.getCastle(name);
     }
 
     public Weapon getWeapon(String name) {
-        try {
-            return restTemplate.getForObject(WEAPON_URL + name, Weapon.class);
-        } catch (HttpClientErrorException e) {
-            System.out.println("Przechwytuje błąd weapon not found ");
-            if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
-                throw new WeaponNotFoundException(name);
-            else
-                throw new WeaponServiceException(e.getRawStatusCode());
-        }
+        return weaponInfo.getWeapon(name);
     }
 
     public Creatures getCreature(String name) {
-        try {
-            return restTemplate.getForObject(CREATURE_URL + name, Creatures.class);
-        } catch (HttpClientErrorException e) {
-            System.out.println("Przechwytuje błąd creature not found");
-            if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
-                throw new CreatureNotFoundException(name);
-            else
-                throw new CreatureServiceException(e.getStatusCode().value());
-        }
+        return creatureInfo.getCreature(name);
     }
 }
