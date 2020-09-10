@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping("/api/castle")
 @RequiredArgsConstructor
 @Slf4j
-//localhost:8040/api/castle
+//localhost:8084/api/castle/all
 public class CastleControllerImpl implements CastleController {
 
     private final CastleServiceImpl castleService;
