@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/weapon")
 @RequiredArgsConstructor
 @Slf4j
 public class WeaponRestControllerImpl implements WeaponRestControler {

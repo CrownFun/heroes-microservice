@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/creature/")
 @RequiredArgsConstructor
 public class CreatureRestControllerImpl implements CreatureRestController {
 

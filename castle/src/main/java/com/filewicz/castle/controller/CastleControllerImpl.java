@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/castle")
 @RequiredArgsConstructor
 @Slf4j
 //localhost:8084/api/castle/all

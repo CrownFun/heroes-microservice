@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/combat")
 @RequiredArgsConstructor
 public class CombatRestControllerImpl {
 
     private final CombatService combatService;
-    private HeroesInfo heroesInfo;
+    private final HeroesInfo heroesInfo;
+
 
     @GetMapping("/fight")
     //http://localhost:8088/api/combat?heroes1=Benq&heroes2=Fendt
@@ -22,7 +22,7 @@ public class CombatRestControllerImpl {
         return combatService.fight(getHeroes(heroes1), getHeroes(heroes2));
     }
 
-    private Heroes getHeroes(String heroesName) {
+    public Heroes getHeroes(String heroesName) {
         return heroesInfo.getHeroesClient(heroesName);
     }
 }

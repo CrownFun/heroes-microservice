@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/heroes")
 @RequiredArgsConstructor
 public class HeroesRestControllerImpl implements HeroesRestController {
 
