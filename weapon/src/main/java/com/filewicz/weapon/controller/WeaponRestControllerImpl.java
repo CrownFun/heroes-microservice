@@ -5,6 +5,7 @@ import com.filewicz.weapon.model.Weapon;
 import com.filewicz.weapon.service.WeaponService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,8 @@ public class WeaponRestControllerImpl implements WeaponRestControler {
 
 
     private final WeaponService weaponService;
+    @Value("${info.property}")
+    private String property;
 
     @Override
     @GetMapping("/{weaponName}")
@@ -41,5 +44,10 @@ public class WeaponRestControllerImpl implements WeaponRestControler {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(allWeapons, HttpStatus.OK);
+    }
+
+    @GetMapping("/message")
+    String property() {
+        return property;
     }
 }
