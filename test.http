@@ -1,8 +1,4 @@
 ###
-http://localhost:8089/api/combat?heroes1=Benq&heroes2=Fendt
-Accept: application/json
-
-###
 http://localhost:8089/api/heroes/all
 Accept: application/json
 
