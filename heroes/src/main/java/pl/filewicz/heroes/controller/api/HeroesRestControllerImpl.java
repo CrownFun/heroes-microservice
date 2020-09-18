@@ -1,6 +1,7 @@
 package pl.filewicz.heroes.controller.api;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class HeroesRestControllerImpl implements HeroesRestController {
-
+    @Value("${info.property}")
+    private String property;
     private final HeroesService heroesService;
 
     @Override
@@ -48,5 +50,10 @@ public class HeroesRestControllerImpl implements HeroesRestController {
         return Optional.ofNullable(heroesService.createHeroes(heroesName, castleName, weaponName, creature1, creature2, creature3))
                 .map(heroes -> new ResponseEntity<>(heroes, HttpStatus.CREATED))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build());
+    }
+
+    @GetMapping("/message")
+    String property() {
+        return property;
     }
 }

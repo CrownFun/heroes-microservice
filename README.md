@@ -23,6 +23,7 @@ Ports:
 8088 - combat
 8089 - zuul
 8761 - eureka (main)
+8888 - configuration
 
 Eureka:
 http://localhost:8761/
@@ -42,6 +43,13 @@ http://localhost:8089/api/creature/all
 http://localhost:8089/api/heroes/create?heroesName=Benq&castleName=Twierdza&weaponName=Miecz&creature1=Cyklop&creature2=Behemot&creature3=Goblin 
 http://localhost:8089/api/heroes/all
 http://localhost:8089/api/combat?heroes1=Benq&heroes2=Fendt
+
+Spring Cloud Config
+http://localhost:8888/heroes-service/default
+http://localhost:8888/castle-service/default
+
+http://localhost:8089/api/castle/message
+http://localhost:8089/api/heroes/message
 
 
 Creatures:

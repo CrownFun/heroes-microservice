@@ -4,6 +4,7 @@ import com.filewicz.creature.exceptions.CreatureNotFoundException;
 import com.filewicz.creature.model.Creature;
 import com.filewicz.creature.service.CreatureService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ import java.util.Optional;
 public class CreatureRestControllerImpl implements CreatureRestController {
 
     private final CreatureService creatureService;
-
+    @Value("${info.property}")
+    private String property;
     @Override
     @GetMapping("/{name}")
     public ResponseEntity<Creature> getCreatureByName(@PathVariable("name") String name) {
@@ -36,5 +38,9 @@ public class CreatureRestControllerImpl implements CreatureRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(allCreatures, HttpStatus.OK);
+    }
+    @GetMapping("/message")
+    String property() {
+        return property;
     }
 }
