@@ -22,8 +22,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RefreshScope
 public class HeroesRestControllerImpl implements HeroesRestController {
+
     @Value("${info.property}")
     private String property;
+
     private final HeroesService heroesService;
 
     @Override

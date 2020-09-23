@@ -1,4 +1,4 @@
-package com.filewicz.creature.controller.api;
+package com.filewicz.creature.controller;
 
 import com.filewicz.creature.model.Creature;
 import org.springframework.http.ResponseEntity;

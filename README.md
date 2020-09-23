@@ -84,10 +84,8 @@ Castles:
                 BASTION,
                 ZAMEK,
                 INFERNO,
-                LOCHY,
                 NEKROPOLIA,
-                FORTECA,
-                CYTADELA;
+                 CYTADELA;
     
 Weapons:
 
