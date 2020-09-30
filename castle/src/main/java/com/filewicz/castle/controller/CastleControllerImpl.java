@@ -54,4 +54,9 @@ public class CastleControllerImpl implements CastleController {
         return property;
     }
 
+    @GetMapping("/example")
+    String example() {
+        return "Czy to działa?";
+    }
+
 }

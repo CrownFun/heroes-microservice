@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import pl.filewicz.heroes.config.RestConfig;
 import pl.filewicz.heroes.exceptions.HeroesNotFoundException;
+import pl.filewicz.heroes.model.Castle;
 import pl.filewicz.heroes.model.Heroes;
 import pl.filewicz.heroes.service.HeroesService;
 
@@ -27,6 +30,8 @@ public class HeroesRestControllerImpl implements HeroesRestController {
     private String property;
 
     private final HeroesService heroesService;
+
+    private final RestConfig restConfig;
 
     @Override
     @GetMapping("/{heroesName}")
@@ -59,5 +64,19 @@ public class HeroesRestControllerImpl implements HeroesRestController {
     @GetMapping("/message")
     String property() {
         return property;
+    }
+
+    @GetMapping("/test")
+    String test() {
+        return "test";
+    }
+
+    @GetMapping("/work")
+    String template() {
+        RestTemplate restTemplate =restConfig.getRestTemplate();
+
+        Castle forObject = restTemplate.getForObject("http://localhost:8089/api/castle/Twierdza", Castle.class);
+        System.out.println("zameczek " + forObject);
+        return forObject.getName();
     }
 }

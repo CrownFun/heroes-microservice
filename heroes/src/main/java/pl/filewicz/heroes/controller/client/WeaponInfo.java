@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import pl.filewicz.heroes.config.RestConfig;
 import pl.filewicz.heroes.exceptions.WeaponNotFoundException;
 import pl.filewicz.heroes.exceptions.WeaponServiceException;
 import pl.filewicz.heroes.model.Weapon;
@@ -14,13 +15,14 @@ import pl.filewicz.heroes.model.Weapon;
 @RequiredArgsConstructor
 public class WeaponInfo {
 
-    private final static String WEAPON_URL = "http://weapon-service/api/weapon/";
+    private final static String WEAPON_URL = "http://localhost:8089/api/weapon/";
 
-    private final RestTemplate restTemplate;
+    private final RestConfig restConfig;
 
     @HystrixCommand(fallbackMethod = "getFallbackWeaponMethod")
     public Weapon getWeapon(String name) {
         try {
+            RestTemplate restTemplate = restConfig.getRestTemplate();
             return restTemplate.getForObject(WEAPON_URL + name, Weapon.class);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().value() == HttpStatus.NOT_FOUND.value())
