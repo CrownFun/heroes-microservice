@@ -10,11 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestConfig {
 
     @Bean
-    @LoadBalanced
     public RestTemplate restTemplate() {
-        HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        httpComponentsClientHttpRequestFactory.setConnectTimeout(3000);
-        return new RestTemplate(httpComponentsClientHttpRequestFactory);
+        return new RestTemplate();
     }
-
 }

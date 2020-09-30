@@ -31,17 +31,10 @@ class CombatRestControllerImplTest {
             nie umozliwia strzeleania na zewnętrzne API wiec nie możliwe jest przetestowanie API Combat w prosty sposób.
             Nalezy powrócić do problemu po konwersji zapisu herosa do bazy danych.
 
-            Narazie nie wiadomo kiedy to nastąpi bo jestem bardzo zajęty
 
          Musze napisać TESTY REST Assured i podpiąć Dokera i na koniec jeszcze Swaggera dodac wtedy jako tako będzie skończone.
 
-         Dziś juz nie mam czasu bo msuze sie spakować i isć do sklepu bo jutro jade w Bieszczady
 
-         Pogoda pewnie sie spierdoli na weekend
-
-          nawet jeszce trasy nie zaplanowałem a już 20:41
-
-         I jeszcze musze zatankowac jutro..
 
 
          **/

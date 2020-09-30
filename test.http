@@ -1,17 +1,28 @@
 ###
-http://localhost:8089/api/heroes/all
+GET http://localhost:8089/api/heroes/all
 Accept: application/json
 
 ###
-http://localhost:8089/api/creatures/all
+GET http://localhost:8089/api/creature/all
 Accept: application/json
 
 ###
-http://localhost:8089/api/weapon/all
+GET http://localhost:8089/api/creature/Chimera
+Accept: application/json
+
+###
+GET http://localhost:8089/api/weapon/all
+Accept: application/json
+
+###
+GET http://localhost:8089/api/weapon/Miecz
 Accept: application/json
 
 ###
 GET http://localhost:8089/api/castle/all
 Accept: application/json
 
+###
+GET http://localhost:8089/api/castle/nekropolia
+Accept: application/json
 ###

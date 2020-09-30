@@ -15,6 +15,8 @@ LoadBalancer - jak działa?
 Ribbon, Feign?
 Problem powtarzajacego sie kodu - resttemplate, exceptions
 
+Aby uruchomoić testy (mimo że MockMvc nie potzrebuje uruchomionego serwera) należy uruchomić najpierw config server (8888) bo inaczej propsy się nie wczytają
+
 Ports:
 8084 - castle
 8085 - weapon
