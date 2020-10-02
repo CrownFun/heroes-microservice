@@ -15,7 +15,12 @@ LoadBalancer - jak działa?
 Ribbon, Feign?
 Problem powtarzajacego sie kodu - resttemplate, exceptions
 
-Aby uruchomoić testy (mimo że MockMvc nie potzrebuje uruchomionego serwera) należy uruchomić najpierw config server (8888) bo inaczej propsy się nie wczytają
+
+Noticed:
+-Aby uruchomoić testy (mimo że MockMvc nie potzrebuje uruchomionego serwera) należy uruchomić najpierw config server (8888) bo inaczej propsy się nie wczytają
+- Uruchomienie samego congig serwera sprawi że możemy uruchomić propsy do wszytstkich serwisow bez konieczności ich stawiania
+- Aby móc strzelić na jakiś endpoint np: http://localhost:8089/api/castle/all należu uruchomić 4 serwisy: Eureka (main), server_config, api_gateway, castle_service
+
 
 Ports:
 8084 - castle
